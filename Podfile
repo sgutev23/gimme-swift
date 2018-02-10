@@ -10,4 +10,5 @@ target 'gimme' do
   pod 'FacebookLogin'
   pod 'Firebase/Core'
   pod 'Firebase/Auth'
+  pod 'Firebase/Database'
 end
