@@ -25,7 +25,17 @@ class WishlistsViewController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    // MARK: - Table view data source
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == Segues.ItemsView {
+            if let destinationViewController = segue.destination as? ItemsViewController {
+                if let wishListCell = sender as? WishlistTableViewCell {
+                    if let wishlist = wishListCell.wishlist {
+                        destinationViewController.wishlist = wishlist
+                    }
+                }
+            }
+        }
+    }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1

@@ -16,6 +16,8 @@
 		3159140A202FA5FF00D9FD90 /* Segues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31591409202FA5FF00D9FD90 /* Segues.swift */; };
 		3159140C202FA63500D9FD90 /* Cells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3159140B202FA63500D9FD90 /* Cells.swift */; };
 		3159140E202FA8FF00D9FD90 /* FacebookLoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3159140D202FA8FF00D9FD90 /* FacebookLoginController.swift */; };
+		31591412202FB38600D9FD90 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31591411202FB38600D9FD90 /* Item.swift */; };
+		31591416202FB65500D9FD90 /* ItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31591415202FB65500D9FD90 /* ItemTableViewCell.swift */; };
 		F6480D0B202F805B003485D0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6480D0A202F805B003485D0 /* AppDelegate.swift */; };
 		F6480D12202F805B003485D0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F6480D10202F805B003485D0 /* Main.storyboard */; };
 		F6480D14202F805B003485D0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F6480D13202F805B003485D0 /* Assets.xcassets */; };
@@ -32,6 +34,8 @@
 		31591409202FA5FF00D9FD90 /* Segues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Segues.swift; sourceTree = "<group>"; };
 		3159140B202FA63500D9FD90 /* Cells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cells.swift; sourceTree = "<group>"; };
 		3159140D202FA8FF00D9FD90 /* FacebookLoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FacebookLoginController.swift; path = gimme/controllers/FacebookLoginController.swift; sourceTree = SOURCE_ROOT; };
+		31591411202FB38600D9FD90 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Item.swift; path = gimme/models/Item.swift; sourceTree = SOURCE_ROOT; };
+		31591415202FB65500D9FD90 /* ItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemTableViewCell.swift; sourceTree = "<group>"; };
 		3E39C35FB6D1A11A7B1E9180 /* Pods-gimme.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-gimme.release.xcconfig"; path = "Pods/Target Support Files/Pods-gimme/Pods-gimme.release.xcconfig"; sourceTree = "<group>"; };
 		55C582D2BE77F7706ECD11E4 /* Pods_gimme.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_gimme.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3E7BD6250BF84DAE2A9A831 /* Pods-gimme.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-gimme.debug.xcconfig"; path = "Pods/Target Support Files/Pods-gimme/Pods-gimme.debug.xcconfig"; sourceTree = "<group>"; };
@@ -72,6 +76,7 @@
 			isa = PBXGroup;
 			children = (
 				31591401202F9DDC00D9FD90 /* Wishlist.swift */,
+				31591411202FB38600D9FD90 /* Item.swift */,
 			);
 			name = models;
 			path = "New Group";
@@ -81,6 +86,7 @@
 			isa = PBXGroup;
 			children = (
 				31591404202FA08700D9FD90 /* WishlistTableViewCell.swift */,
+				31591415202FB65500D9FD90 /* ItemTableViewCell.swift */,
 			);
 			path = "table-view-cells";
 			sourceTree = "<group>";
@@ -292,6 +298,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				31591412202FB38600D9FD90 /* Item.swift in Sources */,
 				315913FF202F9DC800D9FD90 /* FriendsViewController.swift in Sources */,
 				31591402202F9DDC00D9FD90 /* Wishlist.swift in Sources */,
 				31591405202FA08700D9FD90 /* WishlistTableViewCell.swift in Sources */,
@@ -300,6 +307,7 @@
 				3159140C202FA63500D9FD90 /* Cells.swift in Sources */,
 				315913FE202F9DC800D9FD90 /* WishlistsViewController.swift in Sources */,
 				31591407202FA59700D9FD90 /* ItemsViewController.swift in Sources */,
+				31591416202FB65500D9FD90 /* ItemTableViewCell.swift in Sources */,
 				F6480D0B202F805B003485D0 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

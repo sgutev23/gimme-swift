@@ -9,43 +9,40 @@
 import UIKit
 
 class ItemsViewController: UITableViewController {
+    
+    var items = [Item]()
+    var wishlist: Wishlist? = nil
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        
+        loadItems()
+        self.title = wishlist?.name
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-    // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+        return items.count
     }
 
-    /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
+        let cell = tableView.dequeueReusableCell(withIdentifier: Cells.Items, for: indexPath) as! ItemTableViewCell
+        let item = items[indexPath.row]
+        
+        cell.nameLabel?.text = (wishlist?.name)! + " - " + item.name
+    
         return cell
     }
-    */
+    
+    func loadItems() {
+        self.items.append(Item(identifier: "1", name: "Item 1"))
+        self.items.append(Item(identifier: "2", name: "Item 2"))
+        self.items.append(Item(identifier: "3", name: "Item 3"))
+        self.tableView.reloadData()
+    }
 
     /*
     // Override to support conditional editing of the table view.

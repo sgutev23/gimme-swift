@@ -10,4 +10,5 @@ import Foundation
 
 public struct Cells {
     public static let Wishlists = "WishlistCell"
+    public static let Items = "ItemsCell"
 }
