@@ -15,6 +15,7 @@
 		F6480D14202F805B003485D0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F6480D13202F805B003485D0 /* Assets.xcassets */; };
 		F6480D17202F805B003485D0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F6480D15202F805B003485D0 /* LaunchScreen.storyboard */; };
 		F6FAAE6B202F8A7E0010337A /* FacebookLoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6FAAE6A202F8A7E0010337A /* FacebookLoginController.swift */; };
+		F6FAAE6D202F974E0010337A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F6FAAE6C202F974E0010337A /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		F6480D16202F805B003485D0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F6480D18202F805B003485D0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F6FAAE6A202F8A7E0010337A /* FacebookLoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacebookLoginController.swift; sourceTree = "<group>"; };
+		F6FAAE6C202F974E0010337A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +91,7 @@
 				F6480D13202F805B003485D0 /* Assets.xcassets */,
 				F6480D15202F805B003485D0 /* LaunchScreen.storyboard */,
 				F6480D18202F805B003485D0 /* Info.plist */,
+				F6FAAE6C202F974E0010337A /* GoogleService-Info.plist */,
 				F6FAAE6A202F8A7E0010337A /* FacebookLoginController.swift */,
 			);
 			path = gimme;
@@ -157,6 +160,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F6480D17202F805B003485D0 /* LaunchScreen.storyboard in Resources */,
+				F6FAAE6D202F974E0010337A /* GoogleService-Info.plist in Resources */,
 				F6480D14202F805B003485D0 /* Assets.xcassets in Resources */,
 				F6480D12202F805B003485D0 /* Main.storyboard in Resources */,
 			);
@@ -195,6 +199,9 @@
 				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
 				"${BUILT_PRODUCTS_DIR}/FacebookCore/FacebookCore.framework",
 				"${BUILT_PRODUCTS_DIR}/FacebookLogin/FacebookLogin.framework",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -203,6 +210,9 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FacebookCore.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FacebookLogin.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;

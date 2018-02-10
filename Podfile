@@ -8,4 +8,6 @@ target 'gimme' do
   # Pods for gimme
   pod 'FacebookCore'
   pod 'FacebookLogin'
+  pod 'Firebase/Core'
+  pod 'Firebase/Auth'
 end
