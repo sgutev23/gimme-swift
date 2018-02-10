@@ -1,0 +1,6 @@
+framework module Pods_gimme {
+  umbrella header "Pods-gimme-umbrella.h"
+
+  export *
+  module * { export * }
+}

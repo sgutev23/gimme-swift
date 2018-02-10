@@ -7,15 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2D6F7274C96358DD4C971A8E /* Pods_gimme.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55C582D2BE77F7706ECD11E4 /* Pods_gimme.framework */; };
 		F6480D0B202F805B003485D0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6480D0A202F805B003485D0 /* AppDelegate.swift */; };
 		F6480D0D202F805B003485D0 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6480D0C202F805B003485D0 /* FirstViewController.swift */; };
 		F6480D0F202F805B003485D0 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6480D0E202F805B003485D0 /* SecondViewController.swift */; };
 		F6480D12202F805B003485D0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F6480D10202F805B003485D0 /* Main.storyboard */; };
 		F6480D14202F805B003485D0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F6480D13202F805B003485D0 /* Assets.xcassets */; };
 		F6480D17202F805B003485D0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F6480D15202F805B003485D0 /* LaunchScreen.storyboard */; };
+		F6FAAE6B202F8A7E0010337A /* FacebookLoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6FAAE6A202F8A7E0010337A /* FacebookLoginController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3E39C35FB6D1A11A7B1E9180 /* Pods-gimme.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-gimme.release.xcconfig"; path = "Pods/Target Support Files/Pods-gimme/Pods-gimme.release.xcconfig"; sourceTree = "<group>"; };
+		55C582D2BE77F7706ECD11E4 /* Pods_gimme.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_gimme.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D3E7BD6250BF84DAE2A9A831 /* Pods-gimme.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-gimme.debug.xcconfig"; path = "Pods/Target Support Files/Pods-gimme/Pods-gimme.debug.xcconfig"; sourceTree = "<group>"; };
 		F6480D07202F805B003485D0 /* gimme.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = gimme.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F6480D0A202F805B003485D0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F6480D0C202F805B003485D0 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
@@ -24,6 +29,7 @@
 		F6480D13202F805B003485D0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F6480D16202F805B003485D0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F6480D18202F805B003485D0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F6FAAE6A202F8A7E0010337A /* FacebookLoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacebookLoginController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,17 +37,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2D6F7274C96358DD4C971A8E /* Pods_gimme.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		80C9D8CF0BAE4B0B82CE3076 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				D3E7BD6250BF84DAE2A9A831 /* Pods-gimme.debug.xcconfig */,
+				3E39C35FB6D1A11A7B1E9180 /* Pods-gimme.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		EF2C1ADFE31CA97F970E368A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				55C582D2BE77F7706ECD11E4 /* Pods_gimme.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		F6480CFE202F805B003485D0 = {
 			isa = PBXGroup;
 			children = (
 				F6480D09202F805B003485D0 /* gimme */,
 				F6480D08202F805B003485D0 /* Products */,
+				80C9D8CF0BAE4B0B82CE3076 /* Pods */,
+				EF2C1ADFE31CA97F970E368A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -63,6 +89,7 @@
 				F6480D13202F805B003485D0 /* Assets.xcassets */,
 				F6480D15202F805B003485D0 /* LaunchScreen.storyboard */,
 				F6480D18202F805B003485D0 /* Info.plist */,
+				F6FAAE6A202F8A7E0010337A /* FacebookLoginController.swift */,
 			);
 			path = gimme;
 			sourceTree = "<group>";
@@ -74,9 +101,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F6480D1B202F805B003485D0 /* Build configuration list for PBXNativeTarget "gimme" */;
 			buildPhases = (
+				6F417CE1152DFC1E98AFC051 /* [CP] Check Pods Manifest.lock */,
 				F6480D03202F805B003485D0 /* Sources */,
 				F6480D04202F805B003485D0 /* Frameworks */,
 				F6480D05202F805B003485D0 /* Resources */,
+				9E2ED9251ED6252E7F1BA1EB /* [CP] Embed Pods Frameworks */,
+				CD0C630B8BC786C659D34148 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -134,6 +164,68 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		6F417CE1152DFC1E98AFC051 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-gimme-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9E2ED9251ED6252E7F1BA1EB /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-gimme/Pods-gimme-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
+				"${BUILT_PRODUCTS_DIR}/FacebookCore/FacebookCore.framework",
+				"${BUILT_PRODUCTS_DIR}/FacebookLogin/FacebookLogin.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FacebookCore.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FacebookLogin.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-gimme/Pods-gimme-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CD0C630B8BC786C659D34148 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-gimme/Pods-gimme-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		F6480D03202F805B003485D0 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -142,6 +234,7 @@
 				F6480D0F202F805B003485D0 /* SecondViewController.swift in Sources */,
 				F6480D0B202F805B003485D0 /* AppDelegate.swift in Sources */,
 				F6480D0D202F805B003485D0 /* FirstViewController.swift in Sources */,
+				F6FAAE6B202F8A7E0010337A /* FacebookLoginController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -276,6 +369,7 @@
 		};
 		F6480D1C202F805B003485D0 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D3E7BD6250BF84DAE2A9A831 /* Pods-gimme.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -291,6 +385,7 @@
 		};
 		F6480D1D202F805B003485D0 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3E39C35FB6D1A11A7B1E9180 /* Pods-gimme.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
