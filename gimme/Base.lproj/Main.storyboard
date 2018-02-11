@@ -101,12 +101,74 @@
                                 <action selector="logOutAction:" destination="q1u-oN-iZU" id="yWX-UF-T6b"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="TRT-x3-f8a"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="TRT-x3-f8a">
+                            <connections>
+                                <segue destination="S88-qV-sIV" kind="show" identifier="NewWishlistViewSegue" id="FEf-Ie-HYr"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fX7-7d-6tl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1546" y="2"/>
+        </scene>
+        <!--Add Wishlist-->
+        <scene sceneID="MKw-aN-Juh">
+            <objects>
+                <viewController id="S88-qV-sIV" customClass="NewWishlistViewController" customModule="gimme" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="PgV-MQ-GYf">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Yq7-NT-maa">
+                                <rect key="frame" x="16" y="164" width="343" height="396"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PiD-RP-cFj">
+                                <rect key="frame" x="16" y="79" width="343" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Description" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8dk-JU-nyb">
+                                <rect key="frame" x="16" y="117" width="343" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="hqE-h8-8b9" firstAttribute="bottom" secondItem="Yq7-NT-maa" secondAttribute="bottom" constant="58" id="1K8-ZZ-ptP"/>
+                            <constraint firstItem="8dk-JU-nyb" firstAttribute="top" secondItem="PiD-RP-cFj" secondAttribute="bottom" constant="8" id="964-49-Zsk"/>
+                            <constraint firstItem="8dk-JU-nyb" firstAttribute="leading" secondItem="hqE-h8-8b9" secondAttribute="leading" constant="16" id="VNc-we-tHx"/>
+                            <constraint firstItem="hqE-h8-8b9" firstAttribute="trailing" secondItem="Yq7-NT-maa" secondAttribute="trailing" constant="16" id="Ykl-bt-0fw"/>
+                            <constraint firstItem="hqE-h8-8b9" firstAttribute="trailing" secondItem="PiD-RP-cFj" secondAttribute="trailing" constant="16" id="ZPx-bg-JKN"/>
+                            <constraint firstItem="Yq7-NT-maa" firstAttribute="top" secondItem="8dk-JU-nyb" secondAttribute="bottom" constant="17" id="ZfI-LQ-w1f"/>
+                            <constraint firstItem="Yq7-NT-maa" firstAttribute="leading" secondItem="hqE-h8-8b9" secondAttribute="leading" constant="16" id="hAv-5G-Wvx"/>
+                            <constraint firstItem="PiD-RP-cFj" firstAttribute="top" secondItem="hqE-h8-8b9" secondAttribute="top" constant="15" id="sWN-FP-RPe"/>
+                            <constraint firstItem="hqE-h8-8b9" firstAttribute="trailing" secondItem="8dk-JU-nyb" secondAttribute="trailing" constant="16" id="tKQ-3q-njX"/>
+                            <constraint firstItem="PiD-RP-cFj" firstAttribute="leading" secondItem="hqE-h8-8b9" secondAttribute="leading" constant="16" id="wm6-d7-VoK"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="hqE-h8-8b9"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Add Wishlist" id="PRe-2h-SxN">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="lBM-Zc-q1N">
+                            <connections>
+                                <action selector="saveNewWishlist:" destination="S88-qV-sIV" id="ZUv-ni-XLa"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="descriptionTextField" destination="8dk-JU-nyb" id="hhZ-C6-Wia"/>
+                        <outlet property="nameTextField" destination="PiD-RP-cFj" id="4Po-MZ-UZA"/>
+                        <segue destination="P0a-6R-H9u" kind="unwind" identifier="SaveNewWishlistSegue" unwindAction="saveNewWishlistWithSegue:sender:" id="8h4-Jl-kVJ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tOv-gp-slo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="P0a-6R-H9u" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="2461.5999999999999" y="-672.41379310344837"/>
         </scene>
         <!--Items-->
         <scene sceneID="cPD-vs-vEx">

@@ -10,4 +10,7 @@ import Foundation
 
 public struct Segues {
     public static let ItemsView = "ItemsViewSegue"
+    public static let NewWishlistView = "NewWishlistViewSegue"
+    public static let SaveNewWishlist = "SaveNewWishlistSegue"
 }
+

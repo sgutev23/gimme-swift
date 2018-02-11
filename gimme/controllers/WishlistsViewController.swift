@@ -17,11 +17,14 @@ class WishlistsViewController: UITableViewController {
 
     private var wishlists = [Wishlist]()
     private var ref: DatabaseReference!
-    var user:User!
+    private var user:User!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         user = Auth.auth().currentUser
+        ref = Database.database().reference().child("users").child(user.uid).child("wishlists");
+        
         loadWishlists()
     }
 
@@ -63,13 +66,24 @@ class WishlistsViewController: UITableViewController {
     }
     
     func loadWishlists() {
-        ref = Database.database().reference()
-        
-        self.wishlists.append(Wishlist(identifier: "1", name: "Test Wishlist 1", description: "Test Description 1"))
-        self.wishlists.append(Wishlist(identifier: "2", name: "Test Wishlist 2", description: "Test Description 2"))
-        self.wishlists.append(Wishlist(identifier: "3", name: "Test Wishlist 3", description: "Test Description 3"))
-        self.tableView.reloadData()
-        print("\(user?.email)")
+        ref.observe(DataEventType.value, with: { (snapshot) in
+            if snapshot.childrenCount > 0 {
+                self.wishlists.removeAll()
+                
+                for wishlistsObjects in snapshot.children.allObjects as! [DataSnapshot] {
+                    let wishlistObject = wishlistsObjects.value as? [String: AnyObject]
+                    let id = wishlistObject?["id"] as! String
+                    let name = wishlistObject?["name"] as! String
+                    let description = wishlistObject?["description"] as! String
+                    
+                    let wishlist = Wishlist(identifier: id, name: name, description: description)
+                    
+                    self.wishlists.append(wishlist)
+                }
+            }
+            
+            self.tableView.reloadData()
+        });
     }
 
     @IBAction func logOutAction(_ sender: Any) {
@@ -82,5 +96,18 @@ class WishlistsViewController: UITableViewController {
         } catch let signOutError as NSError {
             print ("Error signing out: %@", signOutError)
         }
+    }
+    
+    @IBAction func saveNewWishlist(segue: UIStoryboardSegue, sender: UIStoryboardSegue) {
+        if let source = segue.source as? NewWishlistViewController {
+            let key = ref.childByAutoId().key
+            let newWishlist = [
+                "id": key,
+                "name": source.nameTextField.text!,
+                "description": source.descriptionTextField.text!]
+            
+            ref.child(key).setValue(newWishlist)
+        }
+        
     }
 }
