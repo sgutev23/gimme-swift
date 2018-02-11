@@ -21,7 +21,7 @@ extension FacebookLoginController : LoginButtonDelegate {
         let credential = FacebookAuthProvider.credential(withAccessToken: FBSDKAccessToken.current().tokenString)
      
         Auth.auth().signIn(with: credential) { (user, error) in
-            if let error = error {
+            if error != nil {
                 
                 return
             }

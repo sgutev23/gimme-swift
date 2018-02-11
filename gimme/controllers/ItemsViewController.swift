@@ -7,14 +7,28 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseDatabase
+import FirebaseStorage
+import FacebookLogin
+import FBSDKCoreKit
+import FBSDKLoginKit
 
 class ItemsViewController: UITableViewController {
     
     var items = [Item]()
     var wishlist: Wishlist? = nil
+    
+    private var databaseRef: DatabaseReference!
+    private var user: User!
+    private var storageRef: StorageReference!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        user = Auth.auth().currentUser
+        storageRef = Storage.storage().reference()
+        databaseRef = Database.database().reference().child("users").child(user.uid).child("wishlists").child((wishlist?.identifier)!).child("items")
         
         loadItems()
         self.title = wishlist?.name
@@ -37,6 +51,14 @@ class ItemsViewController: UITableViewController {
         return cell
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == Segues.NewItemView {
+            if let destination = segue.destination as? NewItemViewController {
+                destination.wishlist = wishlist
+            }
+        }
+    }
+    
     func loadItems() {
         self.items.append(Item(identifier: "1", name: "Item 1"))
         self.items.append(Item(identifier: "2", name: "Item 2"))
@@ -44,49 +66,28 @@ class ItemsViewController: UITableViewController {
         self.tableView.reloadData()
     }
 
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
+    @IBAction func saveNewItem(segue: UIStoryboardSegue, sender: UIStoryboardSegue) {
+        if let source = segue.source as? NewItemViewController {
+            let key = self.databaseRef.childByAutoId().key
+            let resizedPicture = source.imageView //TODO: resize
+            let pictureData = (UIImagePNGRepresentation(resizedPicture.image!))
+            let imageStorageRef = storageRef.child("items").child("wishlist-" + (wishlist?.identifier)!).child("items").child(key + ".jpg")
+            
+            _ = imageStorageRef.putData(pictureData!, metadata: nil) { (metadata, error) in
+                if let error = error {
+                    print ("Cannot save image: " + error.localizedDescription)
+                } else {
+                    let downloadUrl = metadata!.downloadURL()
+                    
+                    let newItem = [
+                        "id": key,
+                        "downloadURL": downloadUrl?.absoluteString as Any,
+                        "name": source.nameTextField.text!,
+                        "description": source.descriptionTextField.text!] as [String : Any]
+                    
+                    self.databaseRef.child(key).setValue(newItem)
+                }
+            }
+        }
     }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

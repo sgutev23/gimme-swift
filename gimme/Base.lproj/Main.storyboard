@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -212,7 +213,11 @@
                     </tableView>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Items" id="EVG-5W-PfF">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="eo9-PU-H6f"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="eo9-PU-H6f">
+                            <connections>
+                                <segue destination="rzv-sh-E3h" kind="show" identifier="NewItemViewSegue" id="8sb-iP-EbU"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                 </tableViewController>
@@ -226,6 +231,77 @@
                 </navigationBar>
             </objects>
             <point key="canvasLocation" x="2461.5999999999999" y="1.3493253373313345"/>
+        </scene>
+        <!--Add Item-->
+        <scene sceneID="R65-jh-MzP">
+            <objects>
+                <viewController id="rzv-sh-E3h" customClass="NewItemViewController" customModule="gimme" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="dx2-2e-t23">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sXU-vj-uq0">
+                                <rect key="frame" x="16" y="78" width="343" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Description" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WMK-pH-Xfh">
+                                <rect key="frame" x="16" y="116" width="343" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NOa-H8-PKD">
+                                <rect key="frame" x="16" y="154" width="343" height="343"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="NOa-H8-PKD" secondAttribute="height" multiplier="1:1" id="6Kz-tB-tbd"/>
+                                </constraints>
+                            </scrollView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AgP-VL-ogy">
+                                <rect key="frame" x="151" y="505" width="72" height="30"/>
+                                <state key="normal" title="Add Photo"/>
+                                <connections>
+                                    <action selector="addPhoto:" destination="rzv-sh-E3h" eventType="touchUpInside" id="NBH-J9-5wv"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="4He-62-gUB" firstAttribute="trailing" secondItem="WMK-pH-Xfh" secondAttribute="trailing" constant="16" id="34s-P1-hkT"/>
+                            <constraint firstItem="AgP-VL-ogy" firstAttribute="top" secondItem="NOa-H8-PKD" secondAttribute="bottom" constant="8" symbolic="YES" id="Hov-lv-gCb"/>
+                            <constraint firstItem="sXU-vj-uq0" firstAttribute="leading" secondItem="4He-62-gUB" secondAttribute="leading" constant="16" id="N3a-AK-RCz"/>
+                            <constraint firstItem="4He-62-gUB" firstAttribute="trailing" secondItem="sXU-vj-uq0" secondAttribute="trailing" constant="16" id="W4Z-gw-M30"/>
+                            <constraint firstItem="4He-62-gUB" firstAttribute="bottom" secondItem="AgP-VL-ogy" secondAttribute="bottom" constant="39" id="XFZ-sP-EMl"/>
+                            <constraint firstItem="4He-62-gUB" firstAttribute="trailing" secondItem="NOa-H8-PKD" secondAttribute="trailing" constant="16" id="Xj4-6W-efD"/>
+                            <constraint firstItem="4He-62-gUB" firstAttribute="trailing" secondItem="AgP-VL-ogy" secondAttribute="trailing" constant="152" id="Yrj-cm-GfQ"/>
+                            <constraint firstItem="WMK-pH-Xfh" firstAttribute="top" secondItem="sXU-vj-uq0" secondAttribute="bottom" constant="8" id="c6q-o7-Nqr"/>
+                            <constraint firstItem="sXU-vj-uq0" firstAttribute="top" secondItem="4He-62-gUB" secondAttribute="top" constant="14" id="f7g-fz-o0t"/>
+                            <constraint firstItem="WMK-pH-Xfh" firstAttribute="leading" secondItem="4He-62-gUB" secondAttribute="leading" constant="16" id="jQ0-ap-0Oe"/>
+                            <constraint firstItem="NOa-H8-PKD" firstAttribute="leading" secondItem="4He-62-gUB" secondAttribute="leading" constant="16" id="lfM-OC-85e"/>
+                            <constraint firstItem="AgP-VL-ogy" firstAttribute="leading" secondItem="4He-62-gUB" secondAttribute="leading" constant="151" id="rpN-tc-Dj7"/>
+                            <constraint firstItem="NOa-H8-PKD" firstAttribute="top" secondItem="WMK-pH-Xfh" secondAttribute="bottom" constant="8" symbolic="YES" id="uau-zA-Qo3"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="4He-62-gUB"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Add Item" id="uug-ux-48W">
+                        <barButtonItem key="rightBarButtonItem" title="Save" id="9Og-ji-JtI">
+                            <connections>
+                                <action selector="saveItem:" destination="rzv-sh-E3h" id="du7-Ll-2VT"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="descriptionTextField" destination="WMK-pH-Xfh" id="gX3-Ub-0C5"/>
+                        <outlet property="nameTextField" destination="sXU-vj-uq0" id="a64-Fh-QdX"/>
+                        <outlet property="scrollView" destination="NOa-H8-PKD" id="IDn-ZL-HUZ"/>
+                        <segue destination="Mtt-YY-4aV" kind="unwind" identifier="SaveNewItemSegue" unwindAction="saveNewItemWithSegue:sender:" id="4Ce-6b-7no"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2I0-kP-2u7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="Mtt-YY-4aV" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="3192.8000000000002" y="0.44977511244377816"/>
         </scene>
         <!--Friends-->
         <scene sceneID="3DN-Qx-uod">

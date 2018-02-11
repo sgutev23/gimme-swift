@@ -12,5 +12,7 @@ public struct Segues {
     public static let ItemsView = "ItemsViewSegue"
     public static let NewWishlistView = "NewWishlistViewSegue"
     public static let SaveNewWishlist = "SaveNewWishlistSegue"
+    public static let NewItemView = "NewItemViewSegue"
+    public static let SaveNewItem = "SaveNewItemSegue"
 }
 

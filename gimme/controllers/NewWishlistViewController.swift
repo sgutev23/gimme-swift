@@ -36,8 +36,6 @@ class NewWishlistViewController: UIViewController {
             }
         }
         
-        NSLog("about to save wishlist")
-        
         if canSaveWishlist {
             performSegue(withIdentifier: Segues.SaveNewWishlist, sender: self)
         }

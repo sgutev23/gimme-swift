@@ -59,13 +59,27 @@ class WishlistsViewController: UITableViewController {
         let wishlist = wishlists[indexPath.row]
         
         cell.nameLabel?.text = wishlist.name
-        cell.descriptionLabel?.text = wishlist.name
+        cell.descriptionLabel?.text = wishlist.description
         cell.wishlist = wishlist
         
         return cell
     }
     
-    func loadWishlists() {
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == UITableViewCellEditingStyle.delete {
+            let deletedWishlist = wishlists.remove(at: indexPath.row)
+            
+            tableView.deleteRows(at: [indexPath], with: UITableViewRowAnimation.automatic)
+        
+            deleteWishlist(wishlist: deletedWishlist)
+        }
+    }
+    
+    private func deleteWishlist(wishlist: Wishlist) {
+        ref.child(wishlist.identifier).removeValue()
+    }
+    
+    private func loadWishlists() {
         ref.observe(DataEventType.value, with: { (snapshot) in
             if snapshot.childrenCount > 0 {
                 self.wishlists.removeAll()
@@ -74,9 +88,11 @@ class WishlistsViewController: UITableViewController {
                     let wishlistObject = wishlistsObjects.value as? [String: AnyObject]
                     let id = wishlistObject?["id"] as! String
                     let name = wishlistObject?["name"] as! String
-                    let description = wishlistObject?["description"] as! String
+                    let description = wishlistObject?["description"] as? String
                     
-                    let wishlist = Wishlist(identifier: id, name: name, description: description)
+                    
+                    
+                    let wishlist = Wishlist(identifier: id, name: name, description: description ?? "")
                     
                     self.wishlists.append(wishlist)
                 }
@@ -108,6 +124,5 @@ class WishlistsViewController: UITableViewController {
             
             ref.child(key).setValue(newWishlist)
         }
-        
     }
 }

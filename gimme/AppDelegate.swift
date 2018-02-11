@@ -28,7 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             if let user = user {
                 if(self.activeUser != user){
                     self.activeUser = user
-                    print("-> LOGGED IN AS \(user.email)")
+                    print("-> LOGGED IN AS \(String(describing: user.email))")
                     self.window?.rootViewController = startMainVC
                 }
             } else {
@@ -40,7 +40,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let user = Auth.auth().currentUser;
         
         if ((user) != nil) {
-            print("-> LLOGGED IN AS \(user?.email)")
+            print("-> LLOGGED IN AS \(String(describing: user?.email))")
             self.window?.rootViewController = startMainVC
         } else {
            print("-> NOT LLOGGED IN")
