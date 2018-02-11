@@ -13,10 +13,39 @@ import Firebase
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
-
+    var activeUser:User!
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         FirebaseApp.configure()
+        // check user status then set initial Viewcontroller
+        
+        self.window = UIWindow(frame: UIScreen.main.bounds)
+        let storyboard =  UIStoryboard(name: "Main", bundle: nil)
+        let startMainVC = storyboard.instantiateViewController(withIdentifier: "MainVC")
+        let startIntroVC = storyboard.instantiateViewController(withIdentifier: "LoginVC")
+        
+        Auth.auth().addStateDidChangeListener({ (auth:Auth, user:User?) in
+            if let user = user {
+                if(self.activeUser != user){
+                    self.activeUser = user
+                    print("-> LOGGED IN AS \(user.email)")
+                    self.window?.rootViewController = startMainVC
+                }
+            } else {
+                print("-> NOT LOGGED IN")
+                self.window?.rootViewController = startIntroVC
+            }
+        })
+        
+        let user = Auth.auth().currentUser;
+        
+        if ((user) != nil) {
+            print("-> LLOGGED IN AS \(user?.email)")
+            self.window?.rootViewController = startMainVC
+        } else {
+           print("-> NOT LLOGGED IN")
+            self.window?.rootViewController = startIntroVC
+        }
         return true
     }
 

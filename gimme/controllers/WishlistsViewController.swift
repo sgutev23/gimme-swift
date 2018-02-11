@@ -9,14 +9,19 @@
 import UIKit
 import Firebase
 import FirebaseDatabase
+import FacebookLogin
+import FBSDKCoreKit
+import FBSDKLoginKit
 
 class WishlistsViewController: UITableViewController {
 
     private var wishlists = [Wishlist]()
     private var ref: DatabaseReference!
+    var user:User!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        user = Auth.auth().currentUser
         loadWishlists()
     }
 
@@ -64,6 +69,18 @@ class WishlistsViewController: UITableViewController {
         self.wishlists.append(Wishlist(identifier: "2", name: "Test Wishlist 2", description: "Test Description 2"))
         self.wishlists.append(Wishlist(identifier: "3", name: "Test Wishlist 3", description: "Test Description 3"))
         self.tableView.reloadData()
+        print("\(user?.email)")
     }
 
+    @IBAction func logOutAction(_ sender: Any) {
+        let loginManager = FBSDKLoginManager()
+        loginManager.logOut()
+        let firebaseAuth = Auth.auth()
+        do {
+            try firebaseAuth.signOut()
+            print("Logged out firebase")
+        } catch let signOutError as NSError {
+            print ("Error signing out: %@", signOutError)
+        }
+    }
 }

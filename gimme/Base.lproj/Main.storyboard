@@ -13,7 +13,7 @@
         <!--Facebook Login Controller-->
         <scene sceneID="Ice-87-0np">
             <objects>
-                <viewController id="2WY-9f-Wao" customClass="FacebookLoginController" customModule="gimme" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginVC" id="2WY-9f-Wao" customClass="FacebookLoginController" customModule="gimme" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="iWN-8g-pw0">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -28,7 +28,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="yl2-sM-qoP">
             <objects>
-                <tabBarController id="49e-Tb-3d3" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="MainVC" id="49e-Tb-3d3" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" itemPositioning="fill" id="W28-zg-YXA">
                         <rect key="frame" x="0.0" y="975" width="768" height="49"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
@@ -96,6 +96,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Wishlists" id="H2t-rl-Ake">
+                        <barButtonItem key="leftBarButtonItem" title="Log out" id="0Zb-9d-5nD">
+                            <connections>
+                                <action selector="logOutAction:" destination="q1u-oN-iZU" id="yWX-UF-T6b"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="TRT-x3-f8a"/>
                     </navigationItem>
                 </tableViewController>
