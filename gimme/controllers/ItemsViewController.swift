@@ -41,13 +41,39 @@ class ItemsViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return items.count
     }
-
+    
+    override func viewDidAppear(_ animated: Bool) {
+        self.tableView.reloadData()
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 130
+    }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == UITableViewCellEditingStyle.delete {
+            let deletedItem = items.remove(at: indexPath.row)
+            
+            tableView.deleteRows(at: [indexPath], with: UITableViewRowAnimation.automatic)
+            
+            deleteItem(item: deletedItem)
+        }
+    }
+    
+    private func deleteItem(item: Item) {
+        databaseRef.child(item.identifier).removeValue()
+    }
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: Cells.Items, for: indexPath) as! ItemTableViewCell
         let item = items[indexPath.row]
+        let pictureUrl = URL(string: item.pictureURL)!
+        let pictureData = NSData(contentsOf: pictureUrl as URL)
         
-        cell.nameLabel?.text = (wishlist?.name)! + " - " + item.name
-    
+        cell.picture.image = UIImage(data: pictureData! as Data)
+        cell.nameLabel.text = item.name
+        cell.descriptionLabel.text = item.description
+        
         return cell
     }
     
@@ -60,17 +86,33 @@ class ItemsViewController: UITableViewController {
     }
     
     func loadItems() {
-        self.items.append(Item(identifier: "1", name: "Item 1"))
-        self.items.append(Item(identifier: "2", name: "Item 2"))
-        self.items.append(Item(identifier: "3", name: "Item 3"))
-        self.tableView.reloadData()
+        databaseRef.observe(DataEventType.value, with: { (snapshot) in
+            if snapshot.childrenCount > 0 {
+                self.items.removeAll()
+                
+                for itemsObjects in snapshot.children.allObjects as! [DataSnapshot] {
+                    let itemObject = itemsObjects.value as? [String: AnyObject]
+                    let id = itemObject?["id"] as! String
+                    let name = itemObject?["name"] as! String
+                    let description = itemObject?["description"] as? String
+                    let pictureURL = itemObject?["downloadURL"] as? String
+                    
+                    let item = Item(identifier: id, name: name, description: description ?? "", pictureURL: pictureURL ?? "");
+                    
+                    print ("Got Item: \(item)")
+                    self.items.append(item)
+                }
+            }
+            
+            self.tableView.reloadData()
+        })
     }
 
     @IBAction func saveNewItem(segue: UIStoryboardSegue, sender: UIStoryboardSegue) {
         if let source = segue.source as? NewItemViewController {
             let key = self.databaseRef.childByAutoId().key
-            let resizedPicture = source.imageView //TODO: resize
-            let pictureData = (UIImagePNGRepresentation(resizedPicture.image!))
+            let resizedPicture = cropAndScaleImage(scrollView: source.scrollView)
+            let pictureData = (UIImagePNGRepresentation(resizedPicture))
             let imageStorageRef = storageRef.child("items").child("wishlist-" + (wishlist?.identifier)!).child("items").child(key + ".jpg")
             
             _ = imageStorageRef.putData(pictureData!, metadata: nil) { (metadata, error) in
@@ -89,5 +131,17 @@ class ItemsViewController: UITableViewController {
                 }
             }
         }
+    }
+    
+    private func cropAndScaleImage(scrollView: UIScrollView) -> UIImage {
+        UIGraphicsBeginImageContextWithOptions(scrollView.bounds.size, true, UIScreen.main.scale)
+        let offset = scrollView.contentOffset
+        
+        UIGraphicsGetCurrentContext()?.translateBy(x: -offset.x, y: -offset.y)
+        scrollView.layer.render(in: UIGraphicsGetCurrentContext()!)
+        let pictureToSave = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return pictureToSave!
     }
 }

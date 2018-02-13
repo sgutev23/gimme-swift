@@ -9,6 +9,9 @@
 import UIKit
 
 class ItemTableViewCell: UITableViewCell {
-
+    
+    @IBOutlet weak var picture: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var descriptionLabel: UILabel!
+    
 }

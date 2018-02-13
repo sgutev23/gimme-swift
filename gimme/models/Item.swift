@@ -11,9 +11,13 @@ import Foundation
 public class Item {
     let identifier: String
     let name: String
+    let description: String
+    let pictureURL: String
     
-    public init(identifier: String, name: String) {
+    public init(identifier: String, name: String, description: String, pictureURL: String) {
         self.identifier = identifier
         self.name = name
+        self.description = description
+        self.pictureURL = pictureURL
     }
 }

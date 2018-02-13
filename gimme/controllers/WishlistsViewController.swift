@@ -76,6 +76,8 @@ class WishlistsViewController: UITableViewController {
     }
     
     private func deleteWishlist(wishlist: Wishlist) {
+        //TODO: delete items' pics
+        
         ref.child(wishlist.identifier).removeValue()
     }
     
