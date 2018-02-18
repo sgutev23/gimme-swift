@@ -32,7 +32,7 @@ class NewWishlistViewController: UIViewController {
             if wishlistName.isEmpty {
                 canSaveWishlist = false
                 
-                addAlert(title: AlertLabels.NameTitle, message: AlertLabels.NameMessage)
+                addAlert(title: AlertLabels.nameTitle, message: AlertLabels.nameMessage)
             }
         }
         
@@ -44,15 +44,9 @@ class NewWishlistViewController: UIViewController {
     private func addAlert(title: String, message: String) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
         
-        alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default, handler: nil))
+        alertController.addAction(UIAlertAction(title: ButtonLabels.dismiss, style: UIAlertActionStyle.default, handler: nil))
         
         self.present(alertController, animated: false, completion: nil)
         
-    }
-    
-    private struct AlertLabels {
-        static let NameTitle = "Invalid Name"
-        
-        static let NameMessage = "Please enter a valid name."
     }
 }

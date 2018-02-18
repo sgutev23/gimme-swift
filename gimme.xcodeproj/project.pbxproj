@@ -20,6 +20,11 @@
 		31591416202FB65500D9FD90 /* ItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31591415202FB65500D9FD90 /* ItemTableViewCell.swift */; };
 		31591418203096A900D9FD90 /* NewWishlistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31591417203096A900D9FD90 /* NewWishlistViewController.swift */; };
 		3159141A2030C8D100D9FD90 /* NewItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 315914192030C8D100D9FD90 /* NewItemViewController.swift */; };
+		31D62FCF2038D4550035D87A /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D62FCE2038D4550035D87A /* ImageCache.swift */; };
+		31D62FD22038D7A40035D87A /* LinkedList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D62FD12038D7A40035D87A /* LinkedList.swift */; };
+		31D62FD42038E55F0035D87A /* ItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D62FD32038E55F0035D87A /* ItemViewController.swift */; };
+		31D62FD72038FC880035D87A /* Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D62FD62038FC870035D87A /* Alerts.swift */; };
+		31D62FD92038FCF10035D87A /* Buttons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31D62FD82038FCF10035D87A /* Buttons.swift */; };
 		F6480D0B202F805B003485D0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6480D0A202F805B003485D0 /* AppDelegate.swift */; };
 		F6480D12202F805B003485D0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F6480D10202F805B003485D0 /* Main.storyboard */; };
 		F6480D14202F805B003485D0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F6480D13202F805B003485D0 /* Assets.xcassets */; };
@@ -40,6 +45,11 @@
 		31591415202FB65500D9FD90 /* ItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemTableViewCell.swift; sourceTree = "<group>"; };
 		31591417203096A900D9FD90 /* NewWishlistViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NewWishlistViewController.swift; path = gimme/controllers/NewWishlistViewController.swift; sourceTree = SOURCE_ROOT; };
 		315914192030C8D100D9FD90 /* NewItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NewItemViewController.swift; path = gimme/controllers/NewItemViewController.swift; sourceTree = SOURCE_ROOT; };
+		31D62FCE2038D4550035D87A /* ImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
+		31D62FD12038D7A40035D87A /* LinkedList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkedList.swift; sourceTree = "<group>"; };
+		31D62FD32038E55F0035D87A /* ItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ItemViewController.swift; path = gimme/controllers/ItemViewController.swift; sourceTree = SOURCE_ROOT; };
+		31D62FD62038FC870035D87A /* Alerts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alerts.swift; sourceTree = "<group>"; };
+		31D62FD82038FCF10035D87A /* Buttons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Buttons.swift; sourceTree = "<group>"; };
 		3E39C35FB6D1A11A7B1E9180 /* Pods-gimme.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-gimme.release.xcconfig"; path = "Pods/Target Support Files/Pods-gimme/Pods-gimme.release.xcconfig"; sourceTree = "<group>"; };
 		55C582D2BE77F7706ECD11E4 /* Pods_gimme.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_gimme.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3E7BD6250BF84DAE2A9A831 /* Pods-gimme.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-gimme.debug.xcconfig"; path = "Pods/Target Support Files/Pods-gimme/Pods-gimme.debug.xcconfig"; sourceTree = "<group>"; };
@@ -73,6 +83,7 @@
 				31591406202FA59700D9FD90 /* ItemsViewController.swift */,
 				31591417203096A900D9FD90 /* NewWishlistViewController.swift */,
 				315914192030C8D100D9FD90 /* NewItemViewController.swift */,
+				31D62FD32038E55F0035D87A /* ItemViewController.swift */,
 			);
 			name = controllers;
 			path = "New Group";
@@ -104,6 +115,31 @@
 				3159140B202FA63500D9FD90 /* Cells.swift */,
 			);
 			path = identifiers;
+			sourceTree = "<group>";
+		};
+		31D62FCD2038D4280035D87A /* cache */ = {
+			isa = PBXGroup;
+			children = (
+				31D62FCE2038D4550035D87A /* ImageCache.swift */,
+			);
+			path = cache;
+			sourceTree = "<group>";
+		};
+		31D62FD02038D7930035D87A /* utils */ = {
+			isa = PBXGroup;
+			children = (
+				31D62FD12038D7A40035D87A /* LinkedList.swift */,
+			);
+			path = utils;
+			sourceTree = "<group>";
+		};
+		31D62FD52038FC6A0035D87A /* labels */ = {
+			isa = PBXGroup;
+			children = (
+				31D62FD62038FC870035D87A /* Alerts.swift */,
+				31D62FD82038FCF10035D87A /* Buttons.swift */,
+			);
+			path = labels;
 			sourceTree = "<group>";
 		};
 		80C9D8CF0BAE4B0B82CE3076 /* Pods */ = {
@@ -144,6 +180,9 @@
 		F6480D09202F805B003485D0 /* gimme */ = {
 			isa = PBXGroup;
 			children = (
+				31D62FD52038FC6A0035D87A /* labels */,
+				31D62FD02038D7930035D87A /* utils */,
+				31D62FCD2038D4280035D87A /* cache */,
 				31591408202FA5EC00D9FD90 /* identifiers */,
 				31591403202FA05600D9FD90 /* table-view-cells */,
 				31591400202F9DCE00D9FD90 /* models */,
@@ -305,6 +344,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				31591412202FB38600D9FD90 /* Item.swift in Sources */,
+				31D62FD42038E55F0035D87A /* ItemViewController.swift in Sources */,
 				315913FF202F9DC800D9FD90 /* FriendsViewController.swift in Sources */,
 				31591402202F9DDC00D9FD90 /* Wishlist.swift in Sources */,
 				31591405202FA08700D9FD90 /* WishlistTableViewCell.swift in Sources */,
@@ -312,10 +352,14 @@
 				3159140E202FA8FF00D9FD90 /* FacebookLoginController.swift in Sources */,
 				3159140C202FA63500D9FD90 /* Cells.swift in Sources */,
 				315913FE202F9DC800D9FD90 /* WishlistsViewController.swift in Sources */,
+				31D62FD92038FCF10035D87A /* Buttons.swift in Sources */,
 				31591407202FA59700D9FD90 /* ItemsViewController.swift in Sources */,
+				31D62FD72038FC880035D87A /* Alerts.swift in Sources */,
 				31591416202FB65500D9FD90 /* ItemTableViewCell.swift in Sources */,
 				31591418203096A900D9FD90 /* NewWishlistViewController.swift in Sources */,
 				F6480D0B202F805B003485D0 /* AppDelegate.swift in Sources */,
+				31D62FD22038D7A40035D87A /* LinkedList.swift in Sources */,
+				31D62FCF2038D4550035D87A /* ImageCache.swift in Sources */,
 				3159141A2030C8D100D9FD90 /* NewItemViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -455,7 +499,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = HMB8H7T95S;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = gimme/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.lepook.gimme;
@@ -471,7 +515,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = HMB8H7T95S;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = gimme/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.lepook.gimme;

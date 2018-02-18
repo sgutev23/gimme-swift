@@ -67,18 +67,25 @@ class WishlistsViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == UITableViewCellEditingStyle.delete {
-            let deletedWishlist = wishlists.remove(at: indexPath.row)
-            
-            tableView.deleteRows(at: [indexPath], with: UITableViewRowAnimation.automatic)
-        
-            deleteWishlist(wishlist: deletedWishlist)
+            deleteWishlist(indexPath: indexPath)
         }
     }
     
-    private func deleteWishlist(wishlist: Wishlist) {
-        //TODO: delete items' pics
+    private func deleteWishlist(indexPath: IndexPath) {
+        let dialogMessage = UIAlertController(title: AlertLabels.confirmTitle, message: AlertLabels.deleteMessage, preferredStyle: .alert)
+        let cancel = UIAlertAction(title: ButtonLabels.cancel, style: .cancel, handler: nil)
+        let ok = UIAlertAction(title: ButtonLabels.ok, style: .default, handler: { (action) -> Void in
+            //TODO: delete items' pics
+            let deletedWishlist = self.wishlists.remove(at: indexPath.row)
+            
+            self.tableView.deleteRows(at: [indexPath], with: UITableViewRowAnimation.automatic)
+            self.ref.child(deletedWishlist.identifier).removeValue()
+        });
         
-        ref.child(wishlist.identifier).removeValue()
+        dialogMessage.addAction(ok)
+        dialogMessage.addAction(cancel)
+        
+        self.present(dialogMessage, animated: true, completion: nil)
     }
     
     private func loadWishlists() {
@@ -91,9 +98,6 @@ class WishlistsViewController: UITableViewController {
                     let id = wishlistObject?["id"] as! String
                     let name = wishlistObject?["name"] as! String
                     let description = wishlistObject?["description"] as? String
-                    
-                    
-                    
                     let wishlist = Wishlist(identifier: id, name: name, description: description ?? "")
                     
                     self.wishlists.append(wishlist)

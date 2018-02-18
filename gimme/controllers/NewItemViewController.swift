@@ -29,7 +29,7 @@ class NewItemViewController: UIViewController, UIImagePickerControllerDelegate, 
             if itemName.isEmpty {
                 canSaveItem = false
                 
-                addAlert(title: AlertLabels.NameTitle, message: AlertLabels.NameMessage)
+                addAlert(title: AlertLabels.nameTitle, message: AlertLabels.nameMessage)
             }
         }
         
@@ -43,8 +43,8 @@ class NewItemViewController: UIViewController, UIImagePickerControllerDelegate, 
         imageController.delegate = self
         
         let alert = UIAlertController(title: "Add Photo", message: nil, preferredStyle: UIAlertControllerStyle.actionSheet)
-        let cancelButton = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil)
-        let libButton = UIAlertAction(title: "Select photo from library", style: UIAlertActionStyle.default) { (alert: UIAlertAction!) in
+        let cancelButton = UIAlertAction(title: ButtonLabels.cancel, style: UIAlertActionStyle.cancel, handler: nil)
+        let libButton = UIAlertAction(title: ButtonLabels.selectPhoto, style: UIAlertActionStyle.default) { (alert: UIAlertAction!) in
             imageController.sourceType = UIImagePickerControllerSourceType.photoLibrary
             
             self.present(imageController, animated: true, completion: nil)
@@ -102,8 +102,6 @@ class NewItemViewController: UIViewController, UIImagePickerControllerDelegate, 
         let horizontalPadding = imageViewSize.width < scrollViewSize.width ? (scrollViewSize.width - imageViewSize.width) / 2 : 0
 
         scrollView.contentInset = UIEdgeInsets(top: verticalPadding, left: horizontalPadding, bottom: verticalPadding, right: horizontalPadding)
-        
-        print ("Scroll Did Zoom: \(scrollView.minimumZoomScale)")
     }
     
     func viewForZoomingInScrollView(scrollView: UIScrollView) -> UIView? {
@@ -124,8 +122,6 @@ class NewItemViewController: UIViewController, UIImagePickerControllerDelegate, 
         
         scrollView.minimumZoomScale = min(widthScale, heightScale)
         scrollView.maximumZoomScale = 1.0
-        
-        print ("Minimum Zoom Scale: \(scrollView.minimumZoomScale)")
     }
     
     func setupGestureRecognizer() {
@@ -145,14 +141,8 @@ class NewItemViewController: UIViewController, UIImagePickerControllerDelegate, 
     private func addAlert(title: String, message: String) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
     
-        alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default, handler: nil))
+        alertController.addAction(UIAlertAction(title: ButtonLabels.dismiss, style: UIAlertActionStyle.default, handler: nil))
         
         self.present(alertController, animated: false, completion: nil)
-    }
-    
-    private struct AlertLabels {
-        static let NameTitle = "Invalid Name"
-        
-        static let NameMessage = "Please enter a valid name."
     }
 }

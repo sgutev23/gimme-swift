@@ -37,7 +37,7 @@ class ItemsViewController: UITableViewController {
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return items.count
     }
@@ -52,25 +52,46 @@ class ItemsViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == UITableViewCellEditingStyle.delete {
-            let deletedItem = items.remove(at: indexPath.row)
             
-            tableView.deleteRows(at: [indexPath], with: UITableViewRowAnimation.automatic)
-            
-            deleteItem(item: deletedItem)
+            deleteItem(indexPath: indexPath)
         }
     }
     
-    private func deleteItem(item: Item) {
-        databaseRef.child(item.identifier).removeValue()
+    private func deleteItem(indexPath: IndexPath) {
+        let dialogMessage = UIAlertController(title: AlertLabels.confirmTitle, message: AlertLabels.deleteMessage, preferredStyle: .alert)
+        let cancel = UIAlertAction(title: ButtonLabels.cancel, style: .cancel, handler: nil)
+        let ok = UIAlertAction(title: ButtonLabels.ok, style: .default, handler: { (action) -> Void in
+            let item = self.items.remove(at: indexPath.row)
+            
+            self.tableView.deleteRows(at: [indexPath], with: UITableViewRowAnimation.automatic)
+            self.databaseRef.child(item.identifier).removeValue()
+        });
+        
+        dialogMessage.addAction(ok)
+        dialogMessage.addAction(cancel)
+        
+        self.present(dialogMessage, animated: true, completion: nil)
+        
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: Cells.Items, for: indexPath) as! ItemTableViewCell
         let item = items[indexPath.row]
-        let pictureUrl = URL(string: item.pictureURL)!
-        let pictureData = NSData(contentsOf: pictureUrl as URL)
+        let itemKey = getItemKey(item: item)
         
-        cell.picture.image = UIImage(data: pictureData! as Data)
+        if let cachedImage = ImageCache.shared.get(itemKey){
+            cell.picture.image = cachedImage
+        } else {
+            let pictureUrl = URL(string: item.pictureURL)!
+            let pictureData = NSData(contentsOf: pictureUrl as URL)
+            let image = UIImage(data: pictureData! as Data)
+            
+            cell.picture.image = image
+            
+            ImageCache.shared.set(itemKey, value: image!)
+        }
+        
+        cell.item = item
         cell.nameLabel.text = item.name
         cell.descriptionLabel.text = item.description
         
@@ -81,6 +102,11 @@ class ItemsViewController: UITableViewController {
         if segue.identifier == Segues.NewItemView {
             if let destination = segue.destination as? NewItemViewController {
                 destination.wishlist = wishlist
+            }
+        } else if segue.identifier == Segues.ItemView {
+            if let destination = segue.destination as? ItemViewController, let itemCell = sender as? ItemTableViewCell {
+                destination.picture = ImageCache.shared.get(getItemKey(item: itemCell.item!))
+                destination.item = itemCell.item
             }
         }
     }
@@ -96,10 +122,8 @@ class ItemsViewController: UITableViewController {
                     let name = itemObject?["name"] as! String
                     let description = itemObject?["description"] as? String
                     let pictureURL = itemObject?["downloadURL"] as? String
-                    
                     let item = Item(identifier: id, name: name, description: description ?? "", pictureURL: pictureURL ?? "");
                     
-                    print ("Got Item: \(item)")
                     self.items.append(item)
                 }
             }
@@ -143,5 +167,9 @@ class ItemsViewController: UITableViewController {
         UIGraphicsEndImageContext()
         
         return pictureToSave!
+    }
+    
+    private func getItemKey(item: Item) -> String {
+        return (wishlist?.identifier)! + "-" + item.identifier
     }
 }
