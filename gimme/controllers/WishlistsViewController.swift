@@ -62,6 +62,11 @@ class WishlistsViewController: UITableViewController {
         cell.descriptionLabel?.text = wishlist.description
         cell.wishlist = wishlist
         
+        if !wishlist.isPublic {
+            cell.nameLabel.font = UIFont.italicSystemFont(ofSize: cell.nameLabel.font.pointSize)
+            cell.descriptionLabel.font = UIFont.italicSystemFont(ofSize: cell.descriptionLabel.font.pointSize)
+        }
+        
         return cell
     }
     
@@ -98,7 +103,8 @@ class WishlistsViewController: UITableViewController {
                     let id = wishlistObject?["id"] as! String
                     let name = wishlistObject?["name"] as! String
                     let description = wishlistObject?["description"] as? String
-                    let wishlist = Wishlist(identifier: id, name: name, description: description ?? "")
+                    let isPublic = wishlistObject?["isPublic"] as? Bool
+                    let wishlist = Wishlist(identifier: id, name: name, description: description ?? "", isPublic: isPublic ?? true)
                     
                     self.wishlists.append(wishlist)
                 }
@@ -126,7 +132,8 @@ class WishlistsViewController: UITableViewController {
             let newWishlist = [
                 "id": key,
                 "name": source.nameTextField.text!,
-                "description": source.descriptionTextField.text!]
+                "isPublic": source.privacySwitch.isOn,
+                "description": source.descriptionTextField.text!] as [String : Any]
             
             ref.child(key).setValue(newWishlist)
         }

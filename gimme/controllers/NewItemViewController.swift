@@ -73,6 +73,8 @@ class NewItemViewController: UIViewController, UIImagePickerControllerDelegate, 
         
         setupGestureRecognizer()
         
+        imageView.image = #imageLiteral(resourceName: "camera")
+        
         scrollView.delegate = self
         scrollView.addSubview(imageView)
     }

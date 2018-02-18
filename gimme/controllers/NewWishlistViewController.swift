@@ -12,6 +12,8 @@ class NewWishlistViewController: UIViewController {
     
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var descriptionTextField: UITextField!
+    @IBOutlet weak var privacySwitch: UISwitch!
+    @IBOutlet weak var privacyLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +27,13 @@ class NewWishlistViewController: UIViewController {
         return super.shouldPerformSegue(withIdentifier: identifier, sender: sender)
     }
 
+    @IBAction func privacyChanged(_ sender: Any) {
+        if privacySwitch.isOn {
+            privacyLabel.text = "This wishlist will be public."
+        } else {
+            privacyLabel.text = "This wishlist will be private."
+        }
+    }
     @IBAction func saveNewWishlist(_ sender: Any) {
         var canSaveWishlist = true
         
