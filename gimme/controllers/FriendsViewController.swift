@@ -7,19 +7,49 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseDatabase
+import FirebaseStorage
+import FacebookLogin
+import FBSDKCoreKit
+import FBSDKLoginKit
 
 class FriendsViewController: UITableViewController {
 
+    var users: [AppUser] = []
+    
+    private var databaseRef: DatabaseReference!
+    private var user: User!
+    private var storageRef: StorageReference!
+
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        user = Auth.auth().currentUser
+        storageRef = Storage.storage().reference()
+        databaseRef = Database.database().reference().child("users")
     }
-
+    
+    func loadItems() {
+        databaseRef.observe(DataEventType.value, with: { (snapshot) in
+            if snapshot.childrenCount > 0 {
+                self.users.removeAll()
+                
+                for itemsObjects in snapshot.children.allObjects as! [DataSnapshot] {
+                    let itemObject = itemsObjects.value as? [String: AnyObject]
+                    let id = itemObject?["id"] as! String
+                    let name = itemObject?["name"] as! String
+                    let email = itemObject?["email"] as! String
+                    let photoURL = itemObject?["photoURL"] as? String
+                    let item = AppUser(identifier: id, name: name, email: email, profileImageUrl: photoURL ?? "");
+                    
+                    self.users.append(item)
+                }
+            }
+            
+            self.tableView.reloadData()
+        })
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -29,23 +59,39 @@ class FriendsViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return users.count
     }
 
-    /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
+        let cell = tableView.dequeueReusableCell(withIdentifier: Cells.Users, for: indexPath) as! UserTableViewCell
+        let appUser = users[indexPath.row]
+        let userPhotoKey = getUserPhotoKey(appUser: appUser)
+        
+        if let cachedImage = ImageCache.shared.get(userPhotoKey){
+            cell.userPhoto.image = cachedImage
+        } else {
+            let pictureUrl = URL(string: appUser.profileImageUrl!)!
+            let pictureData = NSData(contentsOf: pictureUrl as URL)
+            let image = UIImage(data: pictureData! as Data)
+            
+            cell.userPhoto.image = image
+            
+            ImageCache.shared.set(userPhotoKey, value: image!)
+        }
+        
+        cell.name.text = appUser.name
+        
         return cell
     }
-    */
+    
+    private func getUserPhotoKey(appUser: AppUser) -> String {
+        return (appUser.identifier)! + "-" + "photo"
+    }
 
     /*
     // Override to support conditional editing of the table view.
